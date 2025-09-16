@@ -1,4 +1,4 @@
-package tests;
+package tests.browserstack;
 
 
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag("ios")
 public class OpenArticleIos extends TestBase {
+
     @Test
     @DisplayName("Mobile wiki page search test by IOS device")
     void loginTest() {

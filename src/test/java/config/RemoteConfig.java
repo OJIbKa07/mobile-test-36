@@ -4,9 +4,9 @@ import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "classpath:${platform}.properties"
+        "classpath:${deviceHost}/${platform}.properties"
 })
-public interface MobileConfig extends Config {
+public interface RemoteConfig extends Config {
 
     @Key("device")
     String device();
