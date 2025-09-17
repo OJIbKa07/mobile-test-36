@@ -1,41 +1,41 @@
 package tests.local;
 
-import com.codeborne.selenide.Condition;
-import io.appium.java_client.MobileBy;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import screens.DataScreen;
+import screens.ExploreScreen;
+import screens.LanguageScreen;
+import screens.ReadingScreen;
+import tests.TestBase;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
 
 @Tag("android_local")
-public class OnboardingTests extends TestBase{
+public class OnboardingTests extends TestBase {
+
+    LanguageScreen languageScreen = new LanguageScreen();
+    ExploreScreen exploreScreen = new ExploreScreen();
+    ReadingScreen readingScreen = new ReadingScreen();
+    DataScreen dataScreen = new DataScreen();
 
     @Test
     void swapGettingStartedPreview() {
-        step("Check Screen 1", () -> {
-            $(MobileBy.id("org.wikipedia.alpha:id/primaryTextView"))
-                    .shouldHave(text("The Free Encyclopedia"))
-                    .shouldHave(text("in over 300 languages"));
+        step("Check Screen Language", () -> {
+            languageScreen.checkTitleLanguage();
         });
-        step("Check Screen 2", () -> {
-            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
-            $(id("org.wikipedia.alpha:id/primaryTextView"))
-                    .shouldHave(text("New ways to explore"));
+        step("Check Screen Explore", () -> {
+            exploreScreen.continueScreen();
+            exploreScreen.checkTitleExplore();
         });
 
-        step("Check Screen 3", () -> {
-            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
-            $(id("org.wikipedia.alpha:id/primaryTextView"))
-                    .shouldHave(text("Reading lists with sync"));
+        step("Check Screen Reading", () -> {
+            readingScreen.continueScreen();
+            readingScreen.checkTitleReading();
         });
 
-        step("Check Screen 4", () -> {
-            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
-            $(id("org.wikipedia.alpha:id/primaryTextView"))
-                    .shouldHave(text("Data & Privacy"));
+        step("Check Screen Data", () -> {
+            dataScreen.continueScreen();
+            dataScreen.checkTitleData();
         });
-    }
+}
 }
